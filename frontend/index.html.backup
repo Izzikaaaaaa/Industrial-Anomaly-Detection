@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20261020-05-fc6d5d4","C":{"Abril Fatface":"YACgEZbkUVE,0","Albert Sans":"YAHO2HRfeh4,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo Black":"YACgEZulLoA,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Baloo 2":"YAHO2IcQUcM,0","Barlow Condensed":"YAFdJljEuFc,0","Barlow":"YAFdJsyuOPM,1","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Cairo":"YAFdtXpDzlQ,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Cinzel":"YACgEeV8bIQ,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Figtree":"YAHO2b-mV7A,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Fredoka":"YACgEZml080,0","Georgia":"YAGzXkO0pEM,0","Hanken Grotesk":"YAHO2VB9G0I,0","Helvetica":"YAFcf7zkXN0,0","IBM Plex Mono":"YAFdJkmvhGI,0","IBM Plex Sans":"YAFdJgT0SHI,0","Impact":"YAFcfnjI7Vk,0","Instrument Sans":"YAHO2bKyaSQ,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Italiana":"YAHO2Toik_w,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Karla":"YAHO2V2NSXM,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Libre Caslon Display":"YAHO2XhLmt0,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Noto Sans JP":"YAFdJiHXlcI,0","Noto Sans KR":"YAGsojZj-RQ,0","Nunito Sans":"YAFdtQJYB9w,1","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Open Sans":"YAFdJt8dAY0,1","Oswald":"YACgEQY10lw,0","Outfit":"YAHO2nVlg14,0","Pacifico":"YADLjORQ1u4,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAHO2gdhi18,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Public Sans":"YAFdJj8NdaU,1","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","STIX Two Text":"YAHO2joycuk,0","Sarabun":"YAFdJssSnME,0","Schibsted Grotesk":"YAHO2sWydRk,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Space Mono":"YADW1-vpsoc,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Industrial Anomaly Detection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=Work+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#080f19;--surface:#101e2c;--surface2:#142637;--line:#294153;--text:#eff9fb;--muted:#a8bfca;--cyan:#59dce9;--lime:#b8e980;--amber:#ffc778;--coral:#ff8e81}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font-family:"Work Sans",sans-serif;background:var(--bg)}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:wait;opacity:.55}:focus-visible{outline:2px solid var(--cyan)!important;outline-offset:3px}.mono{font-family:"Space Mono",monospace}
+    .shell{width:100%;display:grid;grid-template-columns:238px minmax(0,1fr);min-height:100%}.sidebar{background:linear-gradient(175deg,#101e2e,#0b1521 74%);border-right:1px solid var(--line);padding:29px 17px;position:sticky;top:0;height:calc(100 * min(var(--vh,1vh),1vh));display:flex;flex-direction:column;z-index:3}.brand{display:flex;align-items:center;gap:12px;padding:0 10px 29px;border-bottom:1px solid var(--line)}.mark{width:36px;height:36px;border:1px solid #59dce988;display:grid;place-items:center;color:var(--cyan);font-size:24px;box-shadow:inset 0 0 15px #59dce920,0 0 20px #59dce914}.brand-name{font-size:14px;font-weight:800;letter-spacing:.11em}.brand-small{font-size:9px;color:var(--muted);letter-spacing:.13em;margin-top:3px}.nav-caption,.eyebrow,.tag{font:10px "Space Mono",monospace;letter-spacing:.12em;text-transform:uppercase}.nav-caption{padding:29px 12px 12px;color:var(--muted)}.eyebrow,.tag{color:var(--cyan)}.nav-button{width:100%;border:1px solid transparent;background:transparent;color:var(--muted);text-align:left;padding:13px 12px;margin:2px 0;display:flex;gap:12px;align-items:center;font-size:12px;font-weight:600;transition:background .2s,transform .2s,border-color .2s}.nav-button:hover{background:#193043;color:var(--text);transform:translateX(2px)}.nav-button.active{background:linear-gradient(90deg,#173c4b,#173044 80%);color:var(--text);border-color:#346174;box-shadow:inset 3px 0 var(--cyan)}.nav-number{font:10px "Space Mono",monospace;color:var(--cyan)}.sidebar-bottom{margin-top:auto;border-top:1px solid var(--line);padding:18px 12px;color:var(--muted);font-size:11px;line-height:1.8}
+    .main-wrap{min-width:0;padding:25px clamp(18px,3.2vw,52px) 56px;background:radial-gradient(ellipse at 88% 2%,#17516a52,transparent 37%),radial-gradient(ellipse at 8% 58%,#15334a44,transparent 48%),linear-gradient(#ffffff04 1px,transparent 1px),linear-gradient(90deg,#ffffff04 1px,transparent 1px),#080f19;background-size:auto,auto,44px 44px,44px 44px,auto}.topbar{display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:1px solid var(--line);padding-bottom:21px;margin-bottom:32px}.top-status{display:flex;gap:11px;align-items:center;font-size:12px;color:var(--lime)}.dot{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime);position:relative}.dot:after{content:"";position:absolute;inset:-5px;border:1px solid var(--lime);border-radius:50%;animation:pulse 2.7s ease-out infinite}@keyframes pulse{0%{transform:scale(.45);opacity:.65}100%{transform:scale(1.6);opacity:0}}.top-right{display:flex;align-items:center;gap:16px;color:var(--muted);font-size:11px}.operator{border-left:1px solid var(--line);padding-left:16px;color:var(--text)}.view{display:none;animation:enter .35s ease both}.view.active{display:block}@keyframes enter{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+    .page-head{display:flex;justify-content:space-between;align-items:end;gap:22px;flex-wrap:wrap;margin-bottom:25px}.hero-head{padding:28px 30px 29px;border:1px solid #34586a;background:linear-gradient(115deg,#162d3fe9,#101e2de8 57%,#112737e8);position:relative;overflow:hidden;border-radius:8px;margin-bottom:20px}.hero-head:after{content:"";position:absolute;width:240px;height:240px;right:-100px;top:-145px;border:1px solid #59dce938;border-radius:50%;box-shadow:0 0 0 32px #59dce908,0 0 0 64px #59dce908;pointer-events:none}.hero-head .page-head{position:relative;z-index:1;margin:0}.hero-summary{text-align:right;min-width:145px}.hero-number{font-size:clamp(35px,4vw,56px);line-height:1;font-weight:700;letter-spacing:-.07em;color:var(--cyan);margin:8px 0}.hero-tools{display:flex;gap:16px;align-items:end;flex-wrap:wrap}.demo-label{border:1px solid #59dce94c;padding:8px 10px;border-radius:4px;background:#59dce90c}.hero-status{color:var(--lime);font-size:11px;margin-top:9px}
+    h1{font-size:clamp(28px,3vw,43px);letter-spacing:-.05em;line-height:1.11;margin:10px 0;font-weight:700}h2{font-size:17px;letter-spacing:-.03em;margin:0;font-weight:700}h3{font-size:13px;margin:0;font-weight:700}.sub{color:var(--muted);font-size:13px;line-height:1.65;margin:0}.panel{background:linear-gradient(145deg,#132436ee,#0f1c2bee);border:1px solid var(--line);border-radius:8px;padding:21px;min-width:0;box-shadow:0 12px 30px #00000016}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:19px;padding-bottom:15px;border-bottom:1px solid #35506280}.muted{color:var(--muted)}.small{font-size:11px}.tag{white-space:nowrap}
+    .kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:15px}.kpi{padding:17px 17px 14px;min-height:137px;position:relative;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}.kpi:hover,.panel.interactive:hover{transform:translateY(-3px);border-color:#4a8292;box-shadow:0 14px 30px #0004}.kpi:before{content:"";position:absolute;left:0;top:19px;height:25px;width:2px;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}.kpi.warn-card:before{background:var(--amber);box-shadow:0 0 12px var(--amber)}.kpi-label{color:var(--muted);font-size:11px;min-height:29px}.kpi-value{font-size:clamp(21px,2.2vw,31px);font-weight:700;letter-spacing:-.055em;margin:7px 0 3px}.trend{font-size:10px;color:var(--lime)}.trend.warn{color:var(--amber)}.spark{display:block;width:100%;height:25px;margin-top:8px;opacity:.75}.grid-main{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(270px,1fr);gap:15px;margin-bottom:15px}.grid-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:15px}.monitor-module{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0}.monitor-half{padding:20px 22px}.monitor-half+.monitor-half{border-left:1px solid var(--line)}
+    .chart-box{position:relative;height:245px;display:flex;align-items:stretch;background:linear-gradient(180deg,#091723b0,#10223480);border:1px solid #294759;border-radius:5px;padding:9px}.chart-box svg{width:100%;height:100%;overflow:visible}.chart-grid{stroke:#345263;stroke-width:1;stroke-dasharray:3 6}.chart-label{fill:#a8bfca;font:10px "Space Mono",monospace}.plot-dot{cursor:pointer;outline:none;transition:r .15s,filter .15s}.plot-dot:hover,.plot-dot:focus{r:8;filter:drop-shadow(0 0 5px #59dce9)}.plot-dot:focus-visible{stroke:white;stroke-width:3}.tooltip{position:absolute;z-index:2;pointer-events:none;background:#152e3c;border:1px solid var(--cyan);border-radius:4px;padding:9px 12px;font:11px "Space Mono",monospace;line-height:1.7;box-shadow:0 12px 25px #0008;white-space:nowrap}.tooltip[hidden]{display:none}.legend{display:flex;gap:17px;font-size:11px;color:var(--muted);margin-top:14px}.legend b{display:inline-block;width:16px;height:3px;vertical-align:middle;margin-right:7px;background:var(--cyan)}.legend b.alt{background:var(--coral)}.bar-row{display:grid;grid-template-columns:92px 1fr 28px;align-items:center;gap:10px;margin:17px 0;font-size:11px}.track{height:6px;background:#294054;border-radius:10px;overflow:hidden}.fill{height:100%;background:var(--cyan);border-radius:10px}.bar-row:nth-child(3) .fill{background:var(--amber)}.bar-row:nth-child(4) .fill{background:var(--coral)}
+    .donut-wrap{display:flex;align-items:center;justify-content:center;gap:23px;min-height:140px}.donut{width:116px;height:116px;border-radius:50%;background:conic-gradient(var(--lime) 0 91%,var(--coral) 91% 100%);display:grid;place-items:center;flex:none;box-shadow:0 0 25px #b8e98018}.donut:after{content:"91%";width:83px;height:83px;background:var(--surface);border-radius:50%;display:grid;place-items:center;font-size:20px;font-weight:700}.health-row{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #294153a8;padding:11px 0;font-size:11px}.health-row:last-child{border:0}.ok{color:var(--lime)}.warning{color:var(--amber)}.bad{color:var(--coral)}
+    .table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;text-align:left;white-space:nowrap;font-size:11px}th{color:var(--muted);font:10px "Space Mono",monospace;font-weight:400;text-transform:uppercase;letter-spacing:.03em;padding:13px 11px;border-bottom:1px solid #446071}th button{color:inherit;border:0;background:none;padding:0;text-align:left;font:inherit}th button:hover{color:var(--cyan)}td{padding:13px 11px;border-bottom:1px solid #29405499}tbody tr{transition:background .16s}tbody tr:hover{background:#1b3646}tbody tr.flagged{background:#ff8e810b}tbody tr.flagged:hover{background:#ff8e811c}tbody tr.flagged td:first-child{box-shadow:inset 2px 0 var(--coral)}.pill{display:inline-block;padding:5px 9px;border:1px solid #b8e98066;background:#b8e98012;color:var(--lime);border-radius:4px;font:10px "Space Mono",monospace}.pill.flag{border-color:#ff8e8166;background:#ff8e8114;color:var(--coral)}.text-button{background:none;border:0;color:var(--cyan);font-size:11px;padding:5px 0;text-decoration:underline;text-underline-offset:3px}
+    .control,.button{background:#172c3c;border:1px solid #416073;color:var(--text);padding:10px 13px;border-radius:5px;font-size:12px;min-height:40px;transition:background .18s,border-color .18s,transform .18s,box-shadow .18s}.control:focus,.button:hover{border-color:var(--cyan)}.button:hover{transform:translateY(-2px);box-shadow:0 7px 18px #0003}.button.primary{background:var(--cyan);color:#071a23;border-color:var(--cyan);font-weight:700}.button.primary:hover{background:#9ceef3}.button.ghost{background:transparent}.button.active{border-color:var(--cyan);color:var(--cyan);background:#59dce917}.export-button{border-color:#59dce97d;color:var(--cyan);background:#59dce913;font-weight:600}
+    .upload{border:1px dashed #557d8c;border-radius:6px;background:radial-gradient(circle at center,#1a38468a,#1023349c);min-height:166px;display:flex;align-items:center;justify-content:center;text-align:center;padding:25px;transition:.2s;position:relative;overflow:hidden}.upload:before,.upload:after{content:"";position:absolute;width:32px;height:32px;border-color:#59dce94d;pointer-events:none}.upload:before{top:11px;left:11px;border-top:1px solid;border-left:1px solid}.upload:after{right:11px;bottom:11px;border-right:1px solid;border-bottom:1px solid}.upload:hover,.upload.dragging{border-color:var(--cyan);background:#1b4654}.upload p{margin:7px 0 14px;color:var(--muted);font-size:12px}.upload strong{display:block;margin-bottom:7px}.hidden-input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+    .workspace{display:grid;grid-template-columns:1fr 1fr;gap:12px}.image-stage{height:250px;position:relative;overflow:hidden;border:1px solid #426071;border-radius:5px;background:repeating-linear-gradient(0deg,#223548 0 1px,transparent 1px 25px),repeating-linear-gradient(90deg,#223548 0 1px,#0b1b29 1px 25px);display:grid;place-items:center}.image-stage canvas{width:100%;height:100%;object-fit:contain;transform:scale(var(--zoom,1));transition:transform .2s}.stage-label{position:absolute;top:10px;left:10px;background:#091521e8;border:1px solid #416174;padding:6px 9px;border-radius:3px;font:10px "Space Mono",monospace;color:var(--cyan);z-index:2}.signal{width:112px;height:70px;display:block;margin:0 auto 14px}.result-banner{border-left:3px solid var(--lime);border-radius:4px;background:linear-gradient(90deg,#b8e98017,#b8e98006);padding:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}.result-banner.flagged{border-color:var(--coral);background:linear-gradient(90deg,#ff8e8119,#ff8e8105)}.gauge{width:100px;height:100px;border-radius:50%;background:conic-gradient(var(--coral) var(--gauge,0%),#294054 0);display:grid;place-items:center;box-shadow:0 0 23px #ff8e8117}.gauge-inner{width:74px;height:74px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-weight:700}
+    .split{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(240px,.8fr);gap:15px}.filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:10px;align-items:end;background:#0b1b29;border:1px solid var(--line);border-radius:5px;padding:13px}.field label{display:block;font-size:10px;color:var(--muted);margin-bottom:7px}.field .control{width:100%}.risk-item{padding:13px 0;border-bottom:1px solid var(--line);font-size:11px}.risk-item:last-child{border:0}.matrix{display:grid;grid-template-columns:95px 1fr 1fr;gap:5px;align-items:stretch;text-align:center;font:10px "Space Mono",monospace}.matrix>div{padding:14px 5px}.matrix-cell{background:linear-gradient(135deg,#194951,#17343d);border:1px solid #3e8386;border-radius:4px}.matrix-cell.error{background:linear-gradient(135deg,#563a3d,#382b36);border-color:#87535a}.matrix-cell strong{display:block;font-size:25px;color:white;margin-bottom:3px}.metric-list{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:15px}.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.gallery-tile{height:125px;border:1px solid #48616b;border-radius:4px;background:linear-gradient(125deg,#334b57 8%,#79949a 40%,#344954 42%,#67828a 70%,#263e49);position:relative;overflow:hidden}.gallery-tile:after{content:"";position:absolute;inset:12% 15%;border:7px solid #182f39;transform:skew(-8deg);opacity:.75}.gallery-tile.heatmap:before,.gallery-tile.overlay:before{content:"";position:absolute;z-index:2;inset:0;background:radial-gradient(circle at 72% 36%,#ff6754 0%,#ffbd5477 15%,transparent 39%)}.gallery-tile.heatmap{filter:saturate(1.7) brightness(.8)}.tab-group{display:flex;gap:5px;flex-wrap:wrap}.mini-tab{font-size:10px;padding:6px 8px;background:#162b3c;color:var(--muted);border:1px solid var(--line);border-radius:3px}.mini-tab.active{border-color:var(--cyan);color:var(--cyan);background:#59dce912}.drawer-backdrop{position:fixed;inset:0;background:#02070bd6;z-index:10;display:none}.drawer-backdrop.open{display:block}.drawer{position:absolute;right:0;top:0;height:100%;width:min(440px,100%);background:#101e2c;border-left:1px solid var(--cyan);padding:27px;overflow:auto;box-shadow:-20px 0 70px #0008}.notice{font-size:11px;color:var(--amber);min-height:18px;margin:10px 0 0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:1150px){.kpis,.metric-list{grid-template-columns:repeat(3,1fr)}.grid-three{grid-template-columns:1fr 1fr}.monitor-module{grid-column:span 2}.filter-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.shell{display:block}.sidebar{position:relative;height:auto;padding:13px 15px}.brand{padding:0 0 12px}.nav-caption,.sidebar-bottom{display:none}.nav-list{display:flex;overflow-x:auto;gap:5px;padding-top:10px}.nav-button{white-space:nowrap;width:auto;padding:9px}.main-wrap{padding:18px 15px 40px}.operator{display:none}.grid-main,.split{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.image-stage{height:205px}.hero-head{padding:22px}.hero-summary{text-align:left}.gallery{grid-template-columns:repeat(3,1fr)}}@media(max-width:540px){.kpis,.metric-list,.grid-three,.gallery,.filter-grid{grid-template-columns:1fr 1fr}.monitor-module{grid-column:span 2;grid-template-columns:1fr}.monitor-half+.monitor-half{border-left:0;border-top:1px solid var(--line)}.topbar{flex-wrap:wrap}.page-head{align-items:flex-start}.panel{padding:16px}.hero-head .page-head{display:block}.hero-tools{margin-top:20px}.gallery{grid-template-columns:1fr}.filter-grid{grid-template-columns:1fr}.donut-wrap{justify-content:flex-start}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
+ </head>
+ <body data-template-id="__page-root" style="background: rgb(8, 15, 25);">
+  <div class="shell">
+   <aside class="sidebar" aria-label="Application navigation">
+    <div class="brand">
+     <div class="mark" aria-hidden="true">
+      ⌁
+     </div>
+     <div>
+      <div class="brand-name">
+       SIGNAL / AI
+      </div>
+      <div class="brand-small mono">
+       OPERATIONS CONSOLE
+      </div>
+     </div>
+    </div>
+    <nav aria-label="Views">
+     <div class="nav-caption">
+      Workspace / 01
+     </div>
+     <div class="nav-list"><button type="button" class="nav-button active" data-view="overview" aria-current="page"><span class="nav-number">01</span><span data-template-id="nav-overview" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 400; font-style: normal; font-size: 16px;">Overview</span></button> <button type="button" class="nav-button" data-view="single"><span class="nav-number">02</span><span data-template-id="nav-single" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 400; font-style: normal; font-size: 16px;">Single inspection</span></button> <button type="button" class="nav-button" data-view="batch"><span class="nav-number">03</span><span data-template-id="nav-batch" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 400; font-style: normal; font-size: 16px;">Batch inspection</span></button> <button type="button" class="nav-button" data-view="analytics"><span class="nav-number">04</span><span data-template-id="nav-analytics" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 400; font-style: normal; font-size: 16px;">Model analytics</span></button>
+     </div>
+    </nav>
+    <div class="sidebar-bottom">
+     <div class="tag">
+      SIMULATION MODE
+     </div>
+     <div>
+      Local inspection history<br>
+      No equipment connected
+     </div>
+    </div>
+   </aside>
+   <div class="main-wrap">
+    <header class="topbar">
+     <div class="top-status">
+      <span class="dot" aria-hidden="true"></span><span data-template-id="operational-text" class="canva-text" style="color: rgb(184, 233, 128); font-weight: 400; font-style: normal; font-size: 16px;">All systems operational</span><span class="muted mono small">/ DEMO</span>
+     </div>
+     <div class="top-right">
+      <span id="last-sync">Last synced: just now</span><span class="operator">OPERATOR <strong> / SHIFT A</strong></span>
+     </div>
+    </header>
+    <main>
+     <section id="overview" class="view active" aria-labelledby="overview-title">
+      <div class="hero-head">
+       <div class="page-head">
+        <div>
+         <div class="eyebrow">
+          OPERATIONS / LIVE MONITORING · DEMO DATA
+         </div>
+         <h1 id="overview-title" data-template-id="overview-title-text" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 32px;">Industrial Anomaly Detection</h1>
+         <p data-template-id="overview-subtitle" class="canva-text sub" style="color: rgb(168, 191, 202); font-weight: 400; font-style: normal; font-size: 16px;">Production inspection intelligence at a glance.</p>
+        </div>
+        <div class="hero-tools">
+         <span class="demo-label tag">Demo data</span>
+         <div class="hero-summary">
+          <div class="eyebrow">
+           ANOMALY RATE
+          </div>
+          <div class="hero-number">
+           9.0%
+          </div>
+          <div class="hero-status">
+           ● All systems operational
+          </div>
+         </div>
+         <div class="field">
+          <label data-template-id="range-label" class="canva-text" for="date-range" style="color: rgb(168, 191, 202); font-weight: 400; font-style: normal; font-size: 16px;">Date range</label><select id="date-range" class="control"><option value="7">Last 7 days</option><option value="14">Last 14 days</option><option value="30">Last 30 days</option></select>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="kpis" id="overview-kpis"></div>
+      <div class="grid-main">
+       <article data-template-id="trend-panel" class="canva-panel panel" style="background: rgb(16, 30, 44);">
+        <div class="panel-head">
+         <h2 data-template-id="trend-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Inspection trend</h2><span class="tag">VOLUME / ANOMALY RATE</span>
+        </div>
+        <div id="trend-chart" class="chart-box" role="img" aria-label="Inspection volume and anomaly rate across the selected period"></div>
+        <div class="legend">
+         <span><b></b>Inspected volume</span><span><b class="alt"></b>Anomaly rate</span>
+        </div>
+       </article>
+       <article class="panel">
+        <div class="panel-head">
+         <h2 data-template-id="categories-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Anomaly categories</h2><span class="tag">FLAGGED</span>
+        </div>
+        <div class="bar-row">
+         <span>Surface</span>
+         <div class="track">
+          <div class="fill" style="width:76%"></div>
+         </div><span>76</span>
+        </div>
+        <div class="bar-row">
+         <span>Edge</span>
+         <div class="track">
+          <div class="fill" style="width:51%"></div>
+         </div><span>51</span>
+        </div>
+        <div class="bar-row">
+         <span>Discoloration</span>
+         <div class="track">
+          <div class="fill" style="width:36%"></div>
+         </div><span>36</span>
+        </div>
+        <div class="bar-row">
+         <span>Alignment</span>
+         <div class="track">
+          <div class="fill" style="width:24%"></div>
+         </div><span>24</span>
+        </div>
+        <p class="small muted" style="margin-top:26px">Category counts are illustrative demo values.</p>
+       </article>
+      </div>
+      <div class="grid-three">
+       <article class="panel">
+        <div class="panel-head">
+         <h2 data-template-id="results-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Inspection results</h2><span class="tag">DISTRIBUTION</span>
+        </div>
+        <div class="donut-wrap">
+         <div class="donut" role="img" aria-label="91 percent normal, 9 percent flagged"></div>
+         <div class="small">
+          <div class="ok">
+           ● Normal <strong>91%</strong>
+          </div>
+          <div class="bad" style="margin-top:12px">
+           ● Flagged <strong>9%</strong>
+          </div>
+         </div>
+        </div>
+       </article>
+       <div class="panel monitor-module">
+        <article class="monitor-half">
+         <div class="panel-head">
+          <h2 data-template-id="machines-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Machine health</h2><span class="tag">3 LINES</span>
+         </div>
+         <div class="health-row">
+          <span>LINE A · Press</span><span class="ok">● Nominal</span>
+         </div>
+         <div class="health-row">
+          <span>LINE B · Assembly</span><span class="ok">● Nominal</span>
+         </div>
+         <div class="health-row">
+          <span>LINE C · Finish</span><span class="warning">● Monitor</span>
+         </div>
+        </article>
+        <article class="monitor-half">
+         <div class="panel-head">
+          <h2 data-template-id="system-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">System health</h2><span class="tag">DEMO STATUS</span>
+         </div>
+         <div class="health-row">
+          <span>Model</span><span class="ok">Ready</span>
+         </div>
+         <div class="health-row">
+          <span>Cameras</span><span class="ok">3 / 3 simulated</span>
+         </div>
+         <div class="health-row">
+          <span>Data pipeline</span><span class="ok">Nominal</span>
+         </div>
+         <div class="health-row">
+          <span>Model refresh</span><span>15 Oct 2026</span>
+         </div>
+        </article>
+       </div>
+      </div>
+      <article class="panel">
+       <div class="panel-head">
+        <h2 data-template-id="history-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Recent inspection history</h2><span class="tag">LIVE RECORDS</span>
+       </div>
+       <div class="table-scroll">
+        <table>
+         <thead>
+          <tr>
+           <th><button type="button" data-sort="id" data-table="history">Product ID ↕</button></th>
+           <th><button type="button" data-sort="time" data-table="history">Timestamp ↕</button></th>
+           <th><button type="button" data-sort="line" data-table="history">Machine line ↕</button></th>
+           <th><button type="button" data-sort="result" data-table="history">Result ↕</button></th>
+           <th><button type="button" data-sort="score" data-table="history">Anomaly score ↕</button></th>
+           <th>Action</th>
+          </tr>
+         </thead>
+         <tbody id="history-body"></tbody>
+        </table>
+       </div>
+      </article>
+     </section>
+     <section id="single" class="view" aria-labelledby="single-title">
+      <div class="page-head">
+       <div>
+        <div class="eyebrow">
+         INSPECTION / SINGLE IMAGE · SIMULATED ANALYSIS
+        </div>
+        <h1 id="single-title" data-template-id="single-title-text" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 32px;">Single-image inspection</h1>
+        <p data-template-id="single-subtitle" class="canva-text sub" style="color: rgb(168, 191, 202); font-weight: 400; font-style: normal; font-size: 16px;">Run a trained anomaly-detection model on your uploaded image.</p>
+       </div>
+      </div>
+      <article class="panel" style="margin-bottom:15px">
+       <label for="model-choice" class="small muted" style="display:block;margin:0 0 8px">Detection engine</label><select id="model-choice" class="button" style="margin-bottom:12px;width:100%;background:#102333;color:#eff9fb;border:1px solid #294153;padding:10px"><option value="PatchCore-style">PatchCore-style</option><option value="CNN Autoencoder">CNN Autoencoder</option></select><div id="single-drop" class="upload" tabindex="0" role="button" aria-label="Drop an image or press Enter to browse">
+        <div>
+         <svg class="signal" viewBox="0 0 112 70" fill="none" aria-hidden="true">
+          <rect x="16" y="7" width="80" height="56" rx="3" stroke="#59dce9" stroke-opacity=".5"></rect><path d="M0 36h26l10-20 16 42 15-31 9 9h36" stroke="#59dce9" stroke-width="2"></path><circle cx="52" cy="58" r="4" fill="#ff8e81"></circle>
+         </svg><strong data-template-id="single-drop-title" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 16px;">Drop a product image here</strong>
+         <p data-template-id="single-drop-help" class="canva-text" style="color: rgb(168, 191, 202); font-weight: 400; font-style: normal; font-size: 16px;">JPG, PNG or WebP · Up to 10 MB · Live model inference</p><button type="button" id="single-browse" data-template-id="single-browse-text" class="canva-button button primary" style="background: rgb(89, 220, 233); color: rgb(7, 26, 35); font-weight: 700; font-style: normal; font-size: 16px;">Browse image</button>
+        </div>
+       </div><input id="single-input" class="hidden-input" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Select product image">
+       <p id="single-message" class="notice" role="status"></p>
+      </article>
+      <div class="split">
+       <article class="panel">
+        <div class="panel-head">
+         <h2 data-template-id="workspace-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Comparison workspace</h2><span id="image-filename" class="tag">AWAITING IMAGE</span>
+        </div>
+        <div class="workspace">
+         <div class="image-stage">
+          <span class="stage-label">ORIGINAL</span>
+          <canvas id="original-canvas" width="520" height="340" aria-label="Original inspection preview"></canvas>
+         </div>
+         <div class="image-stage">
+          <span id="right-stage-label" class="stage-label">HEATMAP</span>
+          <canvas id="analysis-canvas" width="520" height="340" aria-label="Model-generated anomaly visualization"></canvas>
+         </div>
+        </div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:15px;align-items:center">
+         <div class="tab-group" role="group" aria-label="Analysis visualization">
+          <button type="button" class="button active visual-mode" data-mode="heatmap">Heatmap</button><button type="button" class="button visual-mode" data-mode="original">Original</button><button type="button" class="button visual-mode" data-mode="overlay">Overlay</button>
+         </div>
+         <div style="margin-left:auto;display:flex;gap:6px">
+          <button type="button" id="zoom-out" class="button" aria-label="Zoom out">−</button><button type="button" id="zoom-in" class="button" aria-label="Zoom in">+</button><button type="button" id="zoom-reset" class="button">Reset</button>
+         </div>
+        </div>
+       </article>
+       <div style="display:grid;gap:15px;align-content:start">
+        <article class="panel">
+         <div class="panel-head">
+          <h2 data-template-id="result-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Inspection result</h2><span class="tag">MODEL OUTPUT</span>
+         </div>
+         <div id="single-result" class="result-banner">
+          <div>
+           <div id="result-status" style="font-size:19px;font-weight:700">
+            Awaiting image
+           </div>
+           <div id="result-description" class="small muted" style="margin-top:6px">
+            Select an image to run model inference.
+           </div>
+          </div>
+          <div id="score-gauge" class="gauge">
+           <div id="gauge-value" class="gauge-inner">
+            —
+           </div>
+          </div>
+         </div>
+         <div class="health-row">
+          <span>Anomaly score</span><strong id="result-score">—</strong>
+         </div>
+         <div class="health-row">
+          <span>Confidence</span><strong id="result-confidence">—</strong>
+         </div>
+         <div class="health-row">
+          <span>Inference time</span><strong id="result-time">—</strong>
+         </div>
+         <div class="health-row">
+          <span>Defect category</span><strong id="result-category">—</strong>
+         </div>
+         <div class="health-row">
+          <span>Probable location</span><strong id="result-location">—</strong>
+         </div>
+        </article>
+        <article class="panel">
+         <h2 data-template-id="single-recent-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Recent inspections</h2>
+         <div id="single-recent" class="small muted" style="margin-top:14px">
+          No images inspected in this session.
+         </div>
+        </article>
+       </div>
+      </div>
+     </section>
+     <section id="batch" class="view" aria-labelledby="batch-title">
+      <div class="page-head">
+       <div>
+        <div class="eyebrow">
+         INSPECTION / BATCH · DEMO DATA
+        </div>
+        <h1 id="batch-title" data-template-id="batch-title-text" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 32px;">Batch inspection</h1>
+        <p data-template-id="batch-subtitle" class="canva-text sub" style="color: rgb(168, 191, 202); font-weight: 400; font-style: normal; font-size: 16px;">Run the selected model on multiple image files.</p>
+       </div><button type="button" id="export-button" data-template-id="export-text" class="canva-button button export-button" style="background: rgba(89, 220, 233, 0.075); color: rgb(89, 220, 233); font-weight: 600; font-style: normal; font-size: 16px;">Export inspection results as CSV</button>
+      </div>
+      <article class="panel" style="margin-bottom:15px">
+       <div id="batch-drop" class="upload" tabindex="0" role="button" aria-label="Drop image files or press Enter to browse">
+        <div>
+         <strong data-template-id="batch-drop-title" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 16px;">Drop image files for batch inspection</strong>
+         <p data-template-id="batch-drop-help" class="canva-text" style="color: rgb(168, 191, 202); font-weight: 400; font-style: normal; font-size: 16px;">JPG, PNG or WebP · Up to 10 MB each · Maximum 30 files</p>
+         <div style="display:flex;justify-content:center;gap:9px;flex-wrap:wrap">
+          <button type="button" id="batch-browse" data-template-id="batch-browse-text" class="canva-button button primary" style="background: rgb(89, 220, 233); color: rgb(7, 26, 35); font-weight: 700; font-style: normal; font-size: 16px;">Browse files</button><button type="button" id="load-demo" data-template-id="load-demo-text" class="canva-button button ghost" style="background: transparent; color: rgb(239, 249, 251); font-weight: 400; font-style: normal; font-size: 16px;">Load demo batch</button>
+         </div>
+        </div>
+       </div><input id="batch-input" class="hidden-input" type="file" multiple="" accept="image/jpeg,image/png,image/webp" aria-label="Select batch images">
+       <p id="batch-message" class="notice" role="status"></p>
+      </article>
+      <div class="kpis" style="grid-template-columns:repeat(4,minmax(0,1fr))" id="batch-kpis"></div>
+      <div class="split">
+       <article class="panel">
+        <div class="panel-head">
+         <h2 data-template-id="batch-table-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Inspection queue</h2><span id="batch-count" class="tag">0 RESULTS</span>
+        </div>
+        <div class="filter-grid" style="margin-bottom:16px">
+         <div class="field">
+          <label for="filter-result">Result</label><select id="filter-result" class="control"><option value="">All results</option><option value="Normal">Normal</option><option value="Flagged">Flagged</option></select>
+         </div>
+         <div class="field">
+          <label for="filter-line">Machine line</label><select id="filter-line" class="control"><option value="">All lines</option><option value="A">Line A</option><option value="B">Line B</option><option value="C">Line C</option></select>
+         </div>
+         <div class="field">
+          <label for="filter-score">Minimum score</label><input id="filter-score" class="control" type="number" min="0" max="100" value="0">
+         </div>
+         <div class="field">
+          <label for="filter-search">Search</label><input id="filter-search" class="control" type="search" placeholder="ID or filename">
+         </div><button type="button" id="clear-filters" class="button">Clear filters</button>
+        </div>
+        <div class="table-scroll">
+         <table>
+          <thead>
+           <tr>
+            <th>Product</th>
+            <th><button type="button" data-sort="id" data-table="batch">Product ID ↕</button></th>
+            <th><button type="button" data-sort="filename" data-table="batch">Filename ↕</button></th>
+            <th><button type="button" data-sort="line" data-table="batch">Line ↕</button></th>
+            <th><button type="button" data-sort="score" data-table="batch">Score ↕</button></th>
+            <th><button type="button" data-sort="result" data-table="batch">Result ↕</button></th>
+            <th><button type="button" data-sort="ms" data-table="batch">Time ↕</button></th>
+            <th>Review</th>
+           </tr>
+          </thead>
+          <tbody id="batch-body"></tbody>
+         </table>
+        </div>
+        <p id="batch-empty" class="muted small" style="padding:15px 0">Load demo batch data or add images to begin.</p>
+       </article>
+       <aside class="panel">
+        <div class="panel-head">
+         <h2 data-template-id="flagged-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Flagged products</h2><span class="tag">HIGHEST RISK</span>
+        </div>
+        <div id="risk-list" class="muted small">
+         No flagged products in this batch.
+        </div>
+       </aside>
+      </div>
+     </section>
+     <section id="analytics" class="view" aria-labelledby="analytics-title">
+      <div class="page-head">
+       <div>
+        <div class="eyebrow">
+         MODEL / PERFORMANCE · SIMULATED METRICS
+        </div>
+        <h1 id="analytics-title" data-template-id="analytics-title-text" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 32px;">Model analytics</h1>
+        <p data-template-id="analytics-subtitle" class="canva-text sub" style="color: rgb(168, 191, 202); font-weight: 400; font-style: normal; font-size: 16px;">Explore illustrative model behavior across detection thresholds.</p>
+       </div>
+      </div>
+      <div class="metric-list" id="model-metrics"></div>
+      <div class="grid-main">
+       <article class="panel">
+        <div class="panel-head">
+         <h2 data-template-id="roc-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">ROC curve</h2><span class="tag">AUC 0.962</span>
+        </div>
+        <div id="roc-chart" class="chart-box" role="img" aria-label="Illustrative ROC curve with area under curve 0.962"></div>
+        <div class="legend">
+         <span><b></b>ROC curve</span><span><b class="alt"></b>Reference</span>
+        </div>
+       </article>
+       <article class="panel">
+        <div class="panel-head">
+         <h2 data-template-id="pr-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Precision–recall</h2><span class="tag">DEMO CURVE</span>
+        </div>
+        <div id="pr-chart" class="chart-box" role="img" aria-label="Illustrative precision-recall curve"></div>
+        <div class="legend">
+         <span><b></b>Precision</span><span><b class="alt"></b>Recall reference</span>
+        </div>
+       </article>
+      </div>
+      <div class="grid-main">
+       <article class="panel">
+        <div class="panel-head">
+         <h2 data-template-id="matrix-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Confusion matrix</h2><span class="tag">DEMO CLASSIFICATIONS</span>
+        </div>
+        <div style="max-width:460px">
+         <p class="small muted" style="margin-bottom:15px">Columns: predicted result · Rows: actual result</p>
+         <div class="matrix">
+          <div></div>
+          <div>
+           Pred. normal
+          </div>
+          <div>
+           Pred. flagged
+          </div>
+          <div>
+           Actual normal
+          </div>
+          <div id="cm-tn" class="matrix-cell"></div>
+          <div id="cm-fp" class="matrix-cell error"></div>
+          <div>
+           Actual flagged
+          </div>
+          <div id="cm-fn" class="matrix-cell error"></div>
+          <div id="cm-tp" class="matrix-cell"></div>
+         </div>
+        </div>
+       </article>
+       <article class="panel">
+        <div class="panel-head">
+         <h2 data-template-id="threshold-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Threshold sensitivity</h2><span id="threshold-value" class="tag">0.50</span>
+        </div>
+        <div class="field">
+         <label for="threshold">Classification threshold</label><input id="threshold" type="range" min="20" max="80" value="50" style="width:100%;accent-color:var(--cyan)" aria-describedby="threshold-help">
+        </div>
+        <p id="threshold-help" class="sub" style="margin-top:17px">Adjust to explore the precision–recall trade-off in this simulated dataset. Lower thresholds flag more items.</p>
+       </article>
+      </div>
+      <div class="grid-main">
+       <article class="panel">
+        <div class="panel-head">
+         <h2 data-template-id="localization-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Defect localization examples</h2><span class="tag">ILLUSTRATIVE</span>
+        </div>
+        <div class="gallery">
+         <div>
+          <div class="gallery-tile overlay" aria-label="Simulated surface defect visualization"></div>
+          <p class="small">Surface irregularity · upper right</p>
+          <div class="tab-group gallery-tabs" role="group" aria-label="Example one view">
+           <button type="button" class="mini-tab" data-mode="original">Original</button><button type="button" class="mini-tab" data-mode="heatmap">Heatmap</button><button type="button" class="mini-tab active" data-mode="overlay">Overlay</button>
+          </div>
+         </div>
+         <div>
+          <div class="gallery-tile overlay" aria-label="Simulated edge defect visualization"></div>
+          <p class="small">Edge variance · lower edge</p>
+          <div class="tab-group gallery-tabs" role="group" aria-label="Example two view">
+           <button type="button" class="mini-tab" data-mode="original">Original</button><button type="button" class="mini-tab" data-mode="heatmap">Heatmap</button><button type="button" class="mini-tab active" data-mode="overlay">Overlay</button>
+          </div>
+         </div>
+         <div>
+          <div class="gallery-tile overlay" aria-label="Simulated alignment defect visualization"></div>
+          <p class="small">Alignment variance · center</p>
+          <div class="tab-group gallery-tabs" role="group" aria-label="Example three view">
+           <button type="button" class="mini-tab" data-mode="original">Original</button><button type="button" class="mini-tab" data-mode="heatmap">Heatmap</button><button type="button" class="mini-tab active" data-mode="overlay">Overlay</button>
+          </div>
+         </div>
+        </div>
+       </article>
+       <article class="panel">
+        <div class="panel-head">
+         <h2 data-template-id="comparison-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">PatchCore vs PaDiM</h2><span class="tag">ILLUSTRATIVE COMPARISON</span>
+        </div>
+        <div class="table-scroll">
+         <table>
+          <thead>
+           <tr>
+            <th>Metric</th>
+            <th>PatchCore</th>
+            <th>PaDiM</th>
+           </tr>
+          </thead>
+          <tbody>
+           <tr>
+            <td>ROC AUC</td>
+            <td class="ok">0.962 ★</td>
+            <td>0.941</td>
+           </tr>
+           <tr>
+            <td>Precision</td>
+            <td class="ok">0.927 ★</td>
+            <td>0.901</td>
+           </tr>
+           <tr>
+            <td>Recall</td>
+            <td>0.884</td>
+            <td class="ok">0.902 ★</td>
+           </tr>
+           <tr>
+            <td>F1</td>
+            <td class="ok">0.905 ★</td>
+            <td>0.901</td>
+           </tr>
+           <tr>
+            <td>Inference time</td>
+            <td>38 ms</td>
+            <td class="ok">29 ms ★</td>
+           </tr>
+           <tr>
+            <td>Localization quality</td>
+            <td class="ok">0.91 ★</td>
+            <td>0.88</td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <p class="small muted" style="margin-top:12px">★ Better illustrative value for each metric.</p>
+       </article>
+      </div>
+      <article class="panel">
+       <h2 data-template-id="notes-heading" class="canva-text" style="color: rgb(239, 249, 251); font-weight: 700; font-style: normal; font-size: 24px;">Model notes</h2>
+       <p data-template-id="notes-text" class="canva-text sub" style="margin-top: 10px; color: rgb(168, 191, 202); font-weight: 400; font-style: normal; font-size: 16px;">PatchCore and PaDiM are unsupervised anomaly-detection approaches. Values and visualizations here are fictional examples for interface exploration, not validated performance results or live predictions.</p>
+      </article>
+     </section>
+    </main>
+   </div>
+  </div>
+  <div id="drawer-backdrop" class="drawer-backdrop" aria-hidden="true">
+   <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="panel-head">
+     <h2 id="drawer-title">Inspection details</h2><button id="drawer-close" class="button" type="button" aria-label="Close details">✕</button>
+    </div>
+    <div id="drawer-content"></div>
+   </aside>
+  </div>
+  <div id="live-announcement" class="sr-only" aria-live="polite"></div>
+  <script>
+(() => {
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const announce=s=>{$('#live-announcement').textContent=s};
+  const demo=[
+    {id:'PX-10482',filename:'panel_10482.png',line:'C',score:92,result:'Flagged',ms:42,time:'16 Oct 2026 · 09:42',reason:'Surface irregularity · upper-right edge'},
+    {id:'PX-10481',filename:'housing_10481.jpg',line:'A',score:12,result:'Normal',ms:35,time:'16 Oct 2026 · 09:39',reason:'No visible anomaly in demo'},
+    {id:'PX-10480',filename:'bracket_10480.png',line:'B',score:78,result:'Flagged',ms:39,time:'16 Oct 2026 · 09:35',reason:'Edge variance · lower edge'},
+    {id:'PX-10479',filename:'panel_10479.jpg',line:'C',score:9,result:'Normal',ms:36,time:'16 Oct 2026 · 09:31',reason:'No visible anomaly in demo'},
+    {id:'PX-10478',filename:'case_10478.png',line:'A',score:65,result:'Flagged',ms:41,time:'16 Oct 2026 · 09:28',reason:'Alignment variance · center'},
+    {id:'PX-10477',filename:'bracket_10477.jpg',line:'B',score:16,result:'Normal',ms:33,time:'16 Oct 2026 · 09:23',reason:'No visible anomaly in demo'},
+    {id:'PX-10476',filename:'panel_10476.jpg',line:'A',score:23,result:'Normal',ms:37,time:'16 Oct 2026 · 09:20',reason:'No visible anomaly in demo'},
+    {id:'PX-10475',filename:'housing_10475.png',line:'C',score:87,result:'Flagged',ms:44,time:'16 Oct 2026 · 09:16',reason:'Discoloration · upper surface'}
+  ];
+  let batch=[],filtered=[],currentMode='heatmap',zoom=1,sourceImage=null,analysisImages={heatmap:null,overlay:null},currentScore=0,sortState={history:{key:'time',direction:-1},batch:{key:'score',direction:-1}};
+  const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const spark=(warning=false)=>`<svg class="spark" viewBox="0 0 120 25" preserveAspectRatio="none" aria-hidden="true"><path d="M0 19 L15 16 L28 20 L41 11 L55 14 L67 7 L81 12 L95 5 L108 8 L120 2" fill="none" stroke="${warning?'#ffc778':'#59dce9'}" stroke-width="1.5"/></svg>`;
+  const kpi=(label,value,trend,warning=false)=>`<article class="panel kpi ${warning?'warn-card':''}"><div class="kpi-label">${label}</div><div class="kpi-value">${value}</div><div class="trend ${warning?'warn':''}">${trend}</div>${spark(warning)}</article>`;
+  function overviewKpis(){const n=Number($('#date-range').value),factor=n/7;$('#overview-kpis').innerHTML=[
+    kpi('Total inspected products',Math.round(2486*factor).toLocaleString(),'↗ 6.2% vs prior period'),
+    kpi('Normal products',Math.round(2262*factor).toLocaleString(),'↗ 5.8% vs prior period'),
+    kpi('Flagged products',Math.round(224*factor).toLocaleString(),'↗ 0.4% vs prior period',true),
+    kpi('Anomaly rate','9.0%','↓ 0.3 points vs prior period'),
+    kpi('Avg. inference time','38 ms','↓ 4 ms vs prior period')
+  ].join('');drawTrend(n)}
+  function chart(el,series,second=false){
+    const W=650,H=230,left=45,right=20,top=16,bottom=35,plotW=W-left-right,plotH=H-top-bottom;
+    const x=i=>left+i*plotW/(series.length-1),y=v=>top+(1-v)*plotH;
+    const path=key=>series.map((d,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(d[key]).toFixed(1)}`).join(' ');
+    const grid=[0,.25,.5,.75,1].map(v=>`<line class="chart-grid" x1="${left}" y1="${y(v)}" x2="${W-right}" y2="${y(v)}"/><text class="chart-label" x="3" y="${y(v)+3}">${Math.round(v*100)}</text>`).join('');
+    const points=series.map((d,i)=>`<circle class="plot-dot" tabindex="0" role="button" aria-label="${escapeHTML(d.label)}: ${d.volume||Math.round(d.a*100)} volume index, ${Math.round(d.b*100)} percent anomaly index" data-i="${i}" cx="${x(i)}" cy="${y(d.a)}" r="5" fill="#59dce9" stroke="#102434" stroke-width="2"/>`).join('');
+    el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${grid}<path d="${path('a')}" fill="none" stroke="#59dce9" stroke-width="2.7"/><path d="${path('b')}" fill="none" stroke="${second?'#b8e980':'#ff8e81'}" stroke-width="2" stroke-dasharray="${second?'':'5 4'}"/>${points}<text class="chart-label" x="${left}" y="222">${escapeHTML(series[0].label)}</text><text class="chart-label" x="${W-right-70}" y="222">${escapeHTML(series.at(-1).label)}</text></svg><div class="tooltip" hidden></div>`;
+    const tip=el.querySelector('.tooltip');
+    el.querySelectorAll('.plot-dot').forEach(dot=>{const show=()=>{const d=series[Number(dot.dataset.i)];tip.innerHTML=`${escapeHTML(d.label)}<br>${second?'Curve value':'Inspected'}: ${d.volume||Math.round(d.a*100)}<br>${second?'Reference':'Anomaly rate'}: ${Math.round(d.b*100)}${second?'':'%'}`;tip.hidden=false;tip.style.left=Math.min(65,Math.max(2,Number(dot.getAttribute('cx'))/W*100))+'%';tip.style.top='10px'};dot.addEventListener('mouseenter',show);dot.addEventListener('focus',show);dot.addEventListener('mouseleave',()=>tip.hidden=true);dot.addEventListener('blur',()=>tip.hidden=true)});
+  }
+  function drawTrend(n){const count=n===7?7:n===14?14:15,labels=Array.from({length:count},(_,i)=>{const d=new Date(Date.UTC(2026,9,16-(count-1-i)*n/count));return `${d.getUTCDate()} Oct`});chart($('#trend-chart'),labels.map((label,i)=>({label,a:.46+.23*Math.sin(i*1.4)+i/count*.21,b:.22+.11*Math.cos(i*1.6)+i/count*.08,volume:Math.round(280+85*Math.sin(i*1.4)+i/count*75)})))}
+  function metricCards(){const t=Number($('#threshold').value),tp=Math.round(98-(t-20)*.38),fp=Math.round(72-(t-20)*.72),fn=110-tp,tn=890-fp,p=tp/(tp+fp),r=tp/110,f=2*p*r/(p+r);$('#model-metrics').innerHTML=[kpi('ROC AUC','0.962','Illustrative'),kpi('Precision',p.toFixed(3),'Threshold dependent'),kpi('Recall',r.toFixed(3),'Threshold dependent'),kpi('F1 score',f.toFixed(3),'Threshold dependent'),kpi('Threshold',(t/100).toFixed(2),'Adjust below')].join('');$('#threshold-value').textContent=(t/100).toFixed(2);[['tn',tn],['fp',fp],['fn',fn],['tp',tp]].forEach(([key,value])=>{$('#cm-'+key).innerHTML=`<strong>${value}</strong>${key.toUpperCase()}`})}
+  function drawModelCharts(){chart($('#roc-chart'),Array.from({length:9},(_,i)=>({label:(i/8).toFixed(2),a:Math.min(1,Math.sqrt(i/8)*.95+.05),b:i/8})),true);chart($('#pr-chart'),Array.from({length:9},(_,i)=>({label:(i/8).toFixed(2),a:Math.max(.38,.98-(i/8)**3*.55),b:i/8})),true)}
+  const compare=(a,b,key)=>typeof a[key]==='number'?a[key]-b[key]:String(a[key]).localeCompare(String(b[key]));
+  function sorted(rows,name){const {key,direction}=sortState[name];return [...rows].sort((a,b)=>direction*compare(a,b,key))}
+  function pill(r){return `<span class="pill ${r.result==='Flagged'?'flag':''}">${r.result}</span>`}
+  function history(){const rows=sorted(demo,'history');$('#history-body').innerHTML=rows.map(r=>`<tr class="${r.result==='Flagged'?'flagged':''}"><td class="mono">${r.id}</td><td>${r.time}</td><td>Line ${r.line}</td><td>${pill(r)}</td><td>${r.score}%</td><td><button type="button" class="text-button detail" data-id="${r.id}" data-source="history">View details</button></td></tr>`).join('')}
+  function batchRender(){
+    const result=$('#filter-result').value,line=$('#filter-line').value,minimum=Math.min(100,Math.max(0,Number($('#filter-score').value)||0)),search=$('#filter-search').value.trim().toLowerCase();
+    filtered=sorted(batch.filter(r=>(!result||r.result===result)&&(!line||r.line===line)&&r.score>=minimum&&(!search||r.id.toLowerCase().includes(search)||r.filename.toLowerCase().includes(search))),'batch');
+    $('#batch-count').textContent=`${filtered.length} OF ${batch.length} RESULTS`;$('#batch-empty').textContent=batch.length?'No results match your filters.':'Load demo batch data or add images to begin.';$('#batch-empty').style.display=filtered.length?'none':'block';
+    $('#batch-body').innerHTML=filtered.map(r=>`<tr class="${r.result==='Flagged'?'flagged':''}"><td><span aria-hidden="true" style="display:inline-block;width:28px;height:24px;background:linear-gradient(130deg,#344e59,#829ba0 45%,#193744 46%,#5c7c82);border:1px solid #52788c;border-radius:2px"></span></td><td class="mono">${escapeHTML(r.id)}</td><td>${escapeHTML(r.filename)}</td><td>${escapeHTML(r.line)}</td><td>${r.score}%</td><td>${pill(r)}</td><td>${r.ms} ms</td><td><button type="button" class="text-button detail" data-id="${escapeHTML(r.id)}" data-source="batch">Review</button></td></tr>`).join('');
+    const flagged=batch.filter(r=>r.result==='Flagged').sort((a,b)=>b.score-a.score).slice(0,4);
+    $('#risk-list').innerHTML=flagged.length?flagged.map(r=>`<div class="risk-item"><strong>${escapeHTML(r.id)}</strong><span class="bad" style="float:right">${r.score}%</span><div class="muted" style="margin-top:5px">${escapeHTML(r.reason)}</div></div>`).join(''):'No flagged products in this batch.';
+    const normals=batch.filter(r=>r.result==='Normal').length;$('#batch-kpis').innerHTML=[kpi('Files processed',batch.length,'Current batch'),kpi('Normal',normals,'Passed demo threshold'),kpi('Flagged',batch.length-normals,'Review recommended',true),kpi('Processing time',batch.length?`${(batch.reduce((s,r)=>s+r.ms,0)/1000).toFixed(2)} s`:'0 s','Simulated total')].join('');
+  }
+  function closeDrawer(){const d=$('#drawer-backdrop');d.classList.remove('open');d.setAttribute('aria-hidden','true');document.body.style.overflow='';if(closeDrawer.returnFocus)closeDrawer.returnFocus.focus()}
+  function showDrawer(r,trigger){closeDrawer.returnFocus=trigger;$('#drawer-content').innerHTML=`<div class="eyebrow">INSPECTION RECORD</div><h3 style="font-size:24px;margin:15px 0">${escapeHTML(r.id)}</h3><div class="result-banner ${r.result==='Flagged'?'flagged':''}">${pill(r)}<strong>${r.score}% anomaly score</strong></div>${[['Filename',r.filename],['Machine line','Line '+r.line],['Timestamp',r.time],['Inference time',r.ms+' ms'],['Assessment',r.reason]].map(([a,b])=>`<div class="health-row"><span>${a}</span><strong style="text-align:right;max-width:60%;white-space:normal">${escapeHTML(b)}</strong></div>`).join('')}<p class="sub" style="margin-top:25px">Anomaly scores are model signals; verify suspected defects independently.</p>`;$('#drawer-backdrop').classList.add('open');$('#drawer-backdrop').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('#drawer-close').focus()}
+  function validFiles(files,max){if(!files.length)return 'No files selected.';if(files.length>max)return `Choose no more than ${max} images.`;if(files.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)))return 'Use JPG, PNG or WebP images only.';if(files.some(f=>f.size>10*1024*1024))return 'Each image must be 10 MB or smaller.';return ''}
+  function imageCanvas(ctx,img,mode){const c=ctx.canvas;ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle='#102333';ctx.fillRect(0,0,c.width,c.height);const display=(mode==='original'||!analysisImages[mode])?img:analysisImages[mode];if(display){const scale=Math.min(c.width/display.width,c.height/display.height),w=display.width*scale,h=display.height*scale;ctx.drawImage(display,(c.width-w)/2,(c.height-h)/2,w,h)}else{ctx.fillStyle='#38505b';ctx.fillRect(90,55,340,225);ctx.fillStyle='#6c8991';ctx.fillRect(115,75,290,180);ctx.fillStyle='#243f4a';ctx.fillRect(150,108,220,115);ctx.strokeStyle='#aec5c9';ctx.lineWidth=5;ctx.strokeRect(90,55,340,225)}}
+  function drawPreviews(){imageCanvas($('#original-canvas').getContext('2d'),sourceImage,'original');imageCanvas($('#analysis-canvas').getContext('2d'),sourceImage,currentMode)}
+  function setMode(mode){currentMode=mode;$$('.visual-mode').forEach(b=>{b.classList.toggle('active',b.dataset.mode===mode);b.setAttribute('aria-pressed',String(b.dataset.mode===mode))});$('#right-stage-label').textContent=mode.toUpperCase();drawPreviews()}
+  function loadDataImage(data){return new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=reject;im.src=data})}
+  async function handleSingle(files){const error=validFiles(files,1);if(error){$('#single-message').textContent=error;return}const f=files[0];$('#single-message').textContent='Running trained model…';$('#single-browse').disabled=true;let url;
+    try{url=URL.createObjectURL(f);const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url});sourceImage=img;const form=new FormData();form.append('file',f);form.append('model',$('#model-choice').value);const response=await fetch('/api/predict',{method:'POST',body:form});const data=await response.json();if(!response.ok)throw new Error(data.detail||'Model inference failed');analysisImages.heatmap=await loadDataImage(data.heatmap_png);analysisImages.overlay=await loadDataImage(data.overlay_png);currentScore=data.score_percent;drawPreviews();$('#image-filename').textContent=f.name.length>28?f.name.slice(0,25)+'…':f.name;const flagged=data.prediction!=='NORMAL';$('#single-result').classList.toggle('flagged',flagged);$('#result-status').textContent=flagged?'Needs inspection':'Normal';$('#result-description').textContent=flagged?'The selected model flagged this image for visual review.':'The selected model did not flag this image above its calibrated threshold.';$('#result-score').textContent=data.score.toFixed(5);$('#result-confidence').textContent='—';$('#result-time').textContent=data.latency_ms.toFixed(0)+' ms';$('#result-category').textContent=flagged?'Anomaly response':'None indicated';$('#result-location').textContent=flagged?'See heatmap':'—';$('#gauge-value').textContent=currentScore.toFixed(0)+'%';$('#score-gauge').style.setProperty('--gauge',currentScore+'%');const item=document.createElement('div');item.className='health-row';item.innerHTML=`<span style="overflow:hidden;text-overflow:ellipsis;max-width:65%">${escapeHTML(f.name)}</span><span class="${flagged?'bad':'ok'}">${flagged?'Review':'Normal'}</span>`;if($('#single-recent').textContent.includes('No images inspected'))$('#single-recent').replaceChildren();$('#single-recent').prepend(item);while($('#single-recent').children.length>4)$('#single-recent').lastElementChild.remove();$('#single-message').textContent='Model inference complete. Heatmap shows model response, not a verified defect boundary.';announce('Inspection result: '+$('#result-status').textContent)}catch(e){$('#single-message').textContent='Inspection failed: '+e.message}finally{if(url)URL.revokeObjectURL(url);$('#single-browse').disabled=false;$('#single-input').value=''}}
+  async function handleBatch(files){const error=validFiles(files,30);if(error){$('#batch-message').textContent=error;return}$('#batch-browse').disabled=true;$('#load-demo').disabled=true;$('#batch-message').textContent=`Running model on ${files.length} file(s)…`;try{const form=new FormData();files.forEach(f=>form.append('files',f));form.append('model','PatchCore-style');const response=await fetch('/api/batch',{method:'POST',body:form});const data=await response.json();if(!response.ok)throw new Error(data.detail||'Batch inference failed');batch=[...batch,...data.results.map((r,i)=>({id:r.id,filename:r.filename,line:'A',score:r.score_percent,result:r.prediction==='NORMAL'?'Normal':'Flagged',ms:Math.round(r.latency_ms),time:r.time,reason:r.prediction==='NORMAL'?'Below calibrated threshold':'Model response exceeds calibrated threshold'}))];batchRender();$('#batch-message').textContent=`${data.results.length} image(s) processed by the trained model.`;announce('Batch inference complete')}catch(e){$('#batch-message').textContent='Batch inspection failed: '+e.message}finally{$('#batch-browse').disabled=false;$('#load-demo').disabled=false;$('#batch-input').value=''}}
+  function setupDrop(zone,input,handler){zone.addEventListener('click',e=>{if(e.target.closest('button'))return;input.click()});zone.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.target.closest('button')){e.preventDefault();input.click()}});zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('dragging')});zone.addEventListener('dragleave',()=>zone.classList.remove('dragging'));zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('dragging');handler([...e.dataTransfer.files])});input.addEventListener('change',()=>handler([...input.files]))}
+  $$('.nav-button').forEach(btn=>btn.addEventListener('click',()=>{$$('.nav-button').forEach(b=>{b.classList.toggle('active',b===btn);b.removeAttribute('aria-current')});btn.setAttribute('aria-current','page');$$('.view').forEach(v=>v.classList.toggle('active',v.id===btn.dataset.view));announce(btn.textContent.trim()+' view');window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})}));
+  $('#date-range').addEventListener('change',overviewKpis);$('#threshold').addEventListener('input',metricCards);
+  $$('th button[data-sort]').forEach(b=>b.addEventListener('click',()=>{const s=sortState[b.dataset.table];s.direction=s.key===b.dataset.sort?-s.direction:1;s.key=b.dataset.sort;b.dataset.table==='history'?history():batchRender()}));
+  $('#single-browse').addEventListener('click',()=>$('#single-input').click());$('#batch-browse').addEventListener('click',()=>$('#batch-input').click());setupDrop($('#single-drop'),$('#single-input'),handleSingle);setupDrop($('#batch-drop'),$('#batch-input'),handleBatch);
+  $$('.visual-mode').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));['zoom-in','zoom-out','zoom-reset'].forEach(id=>$('#'+id).addEventListener('click',()=>{zoom=id==='zoom-reset'?1:Math.min(2.5,Math.max(.6,zoom+(id==='zoom-in'?.2:-.2)));$$('.image-stage').forEach(stage=>stage.style.setProperty('--zoom',zoom))}));
+  $('#load-demo').addEventListener('click',()=>{batch=demo.map(r=>({...r}));batchRender();$('#batch-message').textContent='Demo records are disabled in the live project.'});
+  ['filter-result','filter-line','filter-score','filter-search'].forEach(id=>$('#'+id).addEventListener(id==='filter-search'||id==='filter-score'?'input':'change',batchRender));
+  $('#clear-filters').addEventListener('click',()=>{$('#filter-result').value='';$('#filter-line').value='';$('#filter-score').value=0;$('#filter-search').value='';batchRender()});
+  $('#export-button').addEventListener('click',()=>{if(!filtered.length){$('#batch-message').textContent='Nothing to export. Load a batch or adjust your filters.';return}const keys=['id','filename','line','score','result','ms','time','reason'],csv=[keys.join(','),...filtered.map(row=>keys.map(k=>'"'+String(row[k]).replace(/"/g,'""')+'"').join(','))].join('\r\n'),url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),link=document.createElement('a');link.href=url;link.download='industrial-inspection-results.csv';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('#batch-message').textContent=`Exported ${filtered.length} inspection record(s).`});
+  document.addEventListener('click',e=>{const b=e.target.closest('.detail');if(b){const r=(b.dataset.source==='history'?demo:batch).find(item=>item.id===b.dataset.id);if(r)showDrawer(r,b)}});
+  $('#drawer-close').addEventListener('click',closeDrawer);$('#drawer-backdrop').addEventListener('click',e=>{if(e.target===$('#drawer-backdrop'))closeDrawer()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#drawer-backdrop').classList.contains('open'))closeDrawer();if(e.key==='Tab'&&$('#drawer-backdrop').classList.contains('open')){e.preventDefault();$('#drawer-close').focus()}});
+  $$('.gallery-tabs').forEach(group=>group.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{group.querySelectorAll('button').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-pressed',String(b===button))});group.parentElement.querySelector('.gallery-tile').className='gallery-tile '+button.dataset.mode})));
+  overviewKpis();history();batchRender();metricCards();drawModelCharts();drawPreviews();setMode('heatmap');
+})();
+</script>
+ 
+</body></html>

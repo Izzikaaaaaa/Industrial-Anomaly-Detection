@@ -1,0 +1,1 @@
+Download MVTec AD from https://www.mvtec.com/research-teaching/datasets/mvtec-ad and extract the metal_nut category to data/metal_nut/. See README.md.
