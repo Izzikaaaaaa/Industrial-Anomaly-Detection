@@ -3,7 +3,7 @@
 A full-stack academic prototype for visual anomaly detection on the **MVTec AD `metal_nut`** category.
 
 It includes:
-- Streamlit dashboard with single-image and batch inspection
+- dashboard with single-image and batch inspection
 - CNN Autoencoder trained mainly on normal images
 - PatchCore-style detector using a pretrained ResNet18 feature extractor and a normal-feature memory bank
 - Anomaly heatmaps and threshold-based `NORMAL` / `POTENTIAL ANOMALY` results
